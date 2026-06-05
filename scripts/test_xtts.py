@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -11,8 +11,8 @@ from app.schemas import TTSRequest
 
 settings = get_settings()
 print(f"engine={settings.tts_engine}")
-print(f"voice_reference={settings.jassi_voice_path}")
-print(f"voice_reference_ready={settings.jassi_voice_path.exists()}")
+print(f"voice_reference={settings.resolved_jassi_voice_path}")
+print(f"voice_reference_ready={settings.resolved_jassi_voice_path.exists()}")
 
 request = TTSRequest(
     text="Hello dear, this is the real Jassi voice clone test.",

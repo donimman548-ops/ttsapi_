@@ -22,7 +22,7 @@ class TTSEngine:
                 detail=f"Unknown voice '{request.voice}'. Available voice: jassi.",
             )
 
-        if not self.settings.jassi_voice_path.exists():
+        if not self.settings.resolved_jassi_voice_path.exists():
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 detail="Jassi reference audio is missing. Put it at voices/jassi/voice_preview_jassi.mp3.",
@@ -54,7 +54,7 @@ class TTSEngine:
         try:
             self._xtts.tts_to_file(
                 text=text,
-                speaker_wav=str(self.settings.jassi_voice_path),
+                speaker_wav=str(self.settings.resolved_jassi_voice_path),
                 language=language,
                 file_path=str(output_path),
             )

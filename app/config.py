@@ -14,10 +14,11 @@ class Settings(BaseSettings):
     default_language: str = "en"
     xtts_model_name: str = "tts_models/multilingual/multi-dataset/xtts_v2"
     voices_dir: Path = Path(__file__).resolve().parents[1] / "voices"
+    jassi_voice_path: Path | None = None
 
     @property
-    def jassi_voice_path(self) -> Path:
-        return self.voices_dir / "jassi" / "voice_preview_jassi.mp3"
+    def resolved_jassi_voice_path(self) -> Path:
+        return self.jassi_voice_path or self.voices_dir / "jassi" / "voice_preview_jassi.mp3"
 
 
 @lru_cache

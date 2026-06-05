@@ -25,7 +25,7 @@ def health(settings: Settings = Depends(get_settings)) -> dict[str, object]:
     return {
         "status": "ok",
         "engine": settings.tts_engine,
-        "voice_reference_ready": settings.jassi_voice_path.exists(),
+        "voice_reference_ready": settings.resolved_jassi_voice_path.exists(),
         "output_format": settings.output_format,
     }
 
@@ -37,8 +37,8 @@ def voices(settings: Settings = Depends(get_settings)) -> list[VoiceProfile]:
             id="jassi",
             display_name="Jassi Custom Voice",
             language=settings.default_language,
-            reference_audio=str(settings.jassi_voice_path),
-            ready=settings.jassi_voice_path.exists(),
+            reference_audio=str(settings.resolved_jassi_voice_path),
+            ready=settings.resolved_jassi_voice_path.exists(),
         )
     ]
 
