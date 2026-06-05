@@ -1,0 +1,30 @@
+# Secrets
+.env
+*.key
+*.pem
+
+# Private voice/audio assets
+voices/jassi/*.mp3
+voices/jassi/*.wav
+*.wav
+*.mp3
+
+# Local Python environments
+.venv/
+.venv-xtts/
+__pycache__/
+*.pyc
+
+# Model/cache artifacts
+*.pth
+*.pt
+*.bin
+*.safetensors
+.cache/
+models/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

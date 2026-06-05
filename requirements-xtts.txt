@@ -1,0 +1,8 @@
+﻿# Core API dependencies are in requirements.txt.
+# XTTS/Coqui works here in Python 3.10 with these tested pins.
+
+TTS==0.22.0
+transformers==4.40.2
+tokenizers<0.20
+torch==2.1.2
+torchaudio==2.1.2

@@ -1,0 +1,6 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic-settings==2.7.1
+
+# Enable this on a GPU cloud/server when you want real voice cloning:
+# TTS==0.22.0
