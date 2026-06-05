@@ -1,3 +1,5 @@
+import base64
+import tempfile
 from functools import lru_cache
 from pathlib import Path
 
@@ -15,10 +17,25 @@ class Settings(BaseSettings):
     xtts_model_name: str = "tts_models/multilingual/multi-dataset/xtts_v2"
     voices_dir: Path = Path(__file__).resolve().parents[1] / "voices"
     jassi_voice_path: Path | None = None
+    jassi_voice_base64: str | None = None
 
     @property
     def resolved_jassi_voice_path(self) -> Path:
-        return self.jassi_voice_path or self.voices_dir / "jassi" / "voice_preview_jassi.mp3"
+        explicit_path = self.jassi_voice_path
+        if explicit_path and explicit_path.exists():
+            return explicit_path
+
+        local_path = self.voices_dir / "jassi" / "voice_preview_jassi.mp3"
+        if local_path.exists():
+            return local_path
+
+        if self.jassi_voice_base64:
+            decoded_path = Path(tempfile.gettempdir()) / "voice_preview_jassi.mp3"
+            if not decoded_path.exists():
+                decoded_path.write_bytes(base64.b64decode(self.jassi_voice_base64))
+            return decoded_path
+
+        return explicit_path or local_path
 
 
 @lru_cache

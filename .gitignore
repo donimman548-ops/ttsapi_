@@ -28,3 +28,5 @@ models/
 Thumbs.db
 .vscode/
 .idea/
+.env.render
+.env.render.full
