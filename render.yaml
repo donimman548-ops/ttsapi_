@@ -3,22 +3,16 @@
     name: jassi-tts-api
     runtime: python
     plan: free
-    buildCommand: pip install -r requirements.txt -r requirements-xtts.txt
+    buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
-        value: 3.10.20
+        value: 3.12.13
       - key: TTS_ENGINE
-        value: xtts
-      - key: COQUI_TOS_AGREED
-        value: "1"
+        value: mock
       - key: DEFAULT_LANGUAGE
         value: en
       - key: MAX_TEXT_CHARS
         value: "1200"
-      - key: XTTS_MODEL_NAME
-        value: tts_models/multilingual/multi-dataset/xtts_v2
-      - key: JASSI_VOICE_PATH
-        value: /etc/secrets/voice_preview_jassi.mp3
       - key: API_KEY
         sync: false
